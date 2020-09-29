@@ -1,4 +1,4 @@
 server:
-    port: 8082
+    port: 5082
     tomcat:
         basedir: /data/tmp/${spring.application.name}
