@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiurong.hcx.third.mapper.AppMapper">
+    <resultMap id="resultMap" type="com.jiurong.hcx.common.model.third.App">
+        <id property="id" column="id"/><!--id-->
+        <result property="iosVersion" column="ios_version"/><!--ios版本-->
+        <result property="iosForceUpdate" column="ios_force_update"/><!--ios强制更新：1-是，0-否-->
+        <result property="androidVersion" column="android_version"/><!--android版本-->
+        <result property="androidForceUpdate" column="android_force_update"/><!--android强制更新：1-是，0-否-->
+        <result property="createTime" column="create_time"/><!--创建时间-->
+        <result property="updateTime" column="update_time"/><!--修改时间-->
+    </resultMap>
+    <sql id="columnSql">
+        `id`,
+        `ios_version`,
+        `ios_force_update`,
+        `android_version`,
+        `android_force_update`,
+        `create_time`,
+        `update_time`
+    </sql>
+    <sql id="propertySql">
+        #{id,jdbcType=VARCHAR},
+        #{iosVersion,jdbcType=VARCHAR},
+        #{iosForceUpdate,jdbcType=INTEGER},
+        #{androidVersion,jdbcType=VARCHAR},
+        #{androidForceUpdate,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}
+    </sql>
+    <sql id="columnEqProperty">
+        `id`=#{id,jdbcType=VARCHAR},
+        `ios_version`=#{iosVersion,jdbcType=VARCHAR},
+        `ios_force_update`=#{iosForceUpdate,jdbcType=INTEGER},
+        `android_version`=#{androidVersion,jdbcType=VARCHAR},
+        `android_force_update`=#{androidForceUpdate,jdbcType=INTEGER},
+        `create_time`=#{createTime,jdbcType=TIMESTAMP},
+        `update_time`=#{updateTime,jdbcType=TIMESTAMP},
+    </sql>
+    <sql id="columnEqPropertyIf">
+        <if test="id!=null">`id`=#{id,jdbcType=VARCHAR},</if>
+        <if test="iosVersion!=null">`ios_version`=#{iosVersion,jdbcType=VARCHAR},</if>
+        <if test="iosForceUpdate!=null">`ios_force_update`=#{iosForceUpdate,jdbcType=INTEGER},</if>
+        <if test="androidVersion!=null">`android_version`=#{androidVersion,jdbcType=VARCHAR},</if>
+        <if test="androidForceUpdate!=null">`android_force_update`=#{androidForceUpdate,jdbcType=INTEGER},</if>
+        <if test="createTime!=null">`create_time`=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateTime!=null">`update_time`=#{updateTime,jdbcType=TIMESTAMP},</if>
+    </sql>
+    <sql id="whereIdSql">
+        <where>
+            <if test="id!=null">`id` = #{id,jdbcType=VARCHAR}</if>
+            <if test="id==null">AND 1=0</if>
+        </where>
+    </sql>
+    <sql id="whereSql">
+        <where>
+            1=1
+            <if test="id!=null">AND `id`=#{id,jdbcType=VARCHAR}</if>
+            <if test="iosVersion!=null">AND `ios_version`=#{iosVersion,jdbcType=VARCHAR}</if>
+            <if test="iosForceUpdate!=null">AND `ios_force_update`=#{iosForceUpdate,jdbcType=INTEGER}</if>
+            <if test="androidVersion!=null">AND `android_version`=#{androidVersion,jdbcType=VARCHAR}</if>
+            <if test="androidForceUpdate!=null">AND `android_force_update`=#{androidForceUpdate,jdbcType=INTEGER}</if>
+            <if test="createTime!=null">AND `create_time`=#{createTime,jdbcType=TIMESTAMP}</if>
+            <if test="updateTime!=null">AND `update_time`=#{updateTime,jdbcType=TIMESTAMP}</if>
+        </where>
+    </sql>
+    <sql id="orderSql">
+        order by
+        <choose>
+            <when test="sort=='id'">`id`</when>
+            <when test="sort=='iosVersion'">`ios_version`</when>
+            <when test="sort=='iosForceUpdate'">`ios_force_update`</when>
+            <when test="sort=='androidVersion'">`android_version`</when>
+            <when test="sort=='androidForceUpdate'">`android_force_update`</when>
+            <when test="sort=='createTime'">`create_time`</when>
+            <when test="sort=='updateTime'">`update_time`</when>
+            <otherwise>`id`</otherwise>
+        </choose>
+        <choose>
+            <when test="order=='desc'">desc</when>
+            <otherwise>asc</otherwise>
+        </choose>
+    </sql>
+
+    <!--增删改查基础部分-->
+    <insert id="save" parameterType="com.jiurong.hcx.common.model.third.App">
+        INSERT INTO `app`
+        (<include refid="columnSql"/>)
+        VALUES
+        (<include refid="propertySql"/>)
+    </insert>
+    <delete id="deleteById" parameterType="java.lang.String">
+        DELETE FROM `app`
+        <include refid="whereIdSql"/>
+    </delete>
+    <delete id="deleteBySelective" parameterType="Map">
+        DELETE FROM `app`
+        <include refid="whereSql"/>
+    </delete>
+    <update id="updateById" parameterType="com.jiurong.hcx.common.model.third.App">
+        UPDATE `app`
+        <set>
+            <include refid="columnEqProperty"/>
+        </set>
+        <include refid="whereIdSql"/>
+    </update>
+    <update id="updateByIdSelective" parameterType="com.jiurong.hcx.common.model.third.App">
+        UPDATE `app`
+        <set>
+            <include refid="columnEqPropertyIf"/>
+        </set>
+        <include refid="whereIdSql"/>
+    </update>
+    <select id="selectById" parameterType="java.lang.String" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `app`
+        <include refid="whereIdSql"/>
+    </select>
+    <select id="selectOneBySelective" parameterType="Map" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `app`
+        <include refid="whereSql"/>
+        LIMIT 0,1
+    </select>
+    <select id="selectBySelective" parameterType="Map" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `app`
+        <include refid="whereSql"/>
+        <include refid="orderSql"/>
+    </select>
+    <select id="count" parameterType="Map" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM `app`
+        <include refid="whereSql"/>
+    </select>
+</mapper>

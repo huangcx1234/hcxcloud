@@ -1,0 +1,29 @@
+1.后端服务
+    服务          服务名            端口                对应模块                                       负责人
+    注册中心      pile-eureka      8081               注册中心                                       黄崇骁
+    配置中心      pile-config      8082               配置中心                                       黄崇骁
+    路由网关      pile-gateway     8083               路由网关                                       黄崇骁
+    center服务    pile-center      8084               center                                         黄崇骁
+    soyea1服务    pile-soyea1      8085               soyea1                                         吴家麒
+    soyea2服务    pile-soyea2      8086               soyea2                                         吴家麒
+2.前端服务
+    服务          服务名            端口                                                               负责人
+    web页面       pile_web         8091                                                               解柳
+3.API文档地址
+    http://192.9.100.137:8081/
+    点击相应的instance信息的status链接即为的swagger api文档
+4.API调用说明
+    实际请求地址描述：http://192.9.100.137:8083/服务名/swagger请求地址。
+    例如系统配置查询：服务名（pile-center）swagger请求地址（/api/v1/config/page）
+    实际请求地址：http://192.9.100.137:8083/pile-center/api/v1/config/page
+5.分页信息描述：
+    "pageNum": 当前页
+    "pageSize": 每页的数量
+    "pages": 总页数
+    "total": 总记录数
+6.接口采用RestFul风格
+    GET: 获取资源
+    POST: 添加资源
+    PUT: 更新资源
+    DELETE: 禁用/删除资源
+7.除登陆接口外，所有接口调用都需要在header中添加Authorization字段，内容为登陆接口返回token，有效期1天。

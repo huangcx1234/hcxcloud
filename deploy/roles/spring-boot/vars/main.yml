@@ -1,0 +1,12 @@
+---
+# 部署目录
+deploy_dir: '/home/pile/service'
+
+# jar包路径
+jar_name: '{{module_full}}-{{project.version}}.jar'
+jar_path: '{{project_dir}}/{{module_full}}/target/{{jar_name}}'
+deploy_jar_path: '{{deploy_dir}}/{{jar_name}}'
+
+# conf路径
+deploy_conf_name: '{{module_full}}-{{project.version}}.conf'
+deploy_conf_path: '{{deploy_dir}}/{{deploy_conf_name}}'

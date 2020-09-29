@@ -1,0 +1,13 @@
+---
+- name: 'transport package'
+  copy: src={{jar_path}} dest={{deploy_jar_path}} mode=500
+
+- name: 'transport conf'
+  template: src=module.conf dest={{deploy_conf_path}} mode=400
+
+- name: 'register service'
+  file: src={{deploy_jar_path}} dest=/etc/init.d/{{module_full}} mode="u=rwx,g=rx,o=rx" state="link"
+
+- name: 'restart service'
+  service: name={{module_full}} state=restarted enabled=yes
+

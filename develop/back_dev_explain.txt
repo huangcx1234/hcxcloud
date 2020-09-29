@@ -1,0 +1,20 @@
+1.开发阶段服务器：192.9.100.137
+2.开发阶段服务器项目存放目录：/home/pile/service
+3.开发阶段数据库：192.9.100.137：pile
+4.开发阶段eureka服务：http://192.9.100.137:8081/eureka/
+5.数据库设计时必须填写"字段备注"以及"是否必填"，以便CodeGenerator生成；
+6.CodeGenerator.java为代码生成器，可以生成model、request、mapper.xml、mapper、service、controller文件，
+    只需填写moduleName、tableComment、tableName运行即可，生成的model文件请放于common模块中，其余文件放于各自服务下；
+7.项目使用lombok，请下载必要插件，防止IDE报错
+8.项目使用eureka config，配置文件统一放置于/pile-config/config目录下，各服务负责人自己维护，开发阶段只需维护dev相关配置即可，
+    其他服务不应再添加新的配置文件
+9.各服务之间接口调用使用feign，接口提供者需在common模块的client目录下提供相关接口（例如CenterClient）
+10.服务器项目启动命令：./startup.sh 服务名（例如:center）
+11.对外api请求均会过网关,外部请求路径 http://192.9.100.137:8083/服务名/swagger请求地址。
+    如要请求用户信息，请求地址为http://192.9.100.137:8083/pile-center/api/v1/user?id=f1a54b0821eb4778abc4bc87e60cc0e6
+12.所有经过api网关的请求接口均会在header中带上1.该用户用户名，字段为username。
+13. 社会平台：MA27YQ0R41，密码：8eywm5nk
+    公交平台：MA27YQ0R42，密码：au7kd1l3
+    互联互通：MA27YQ0R43，密码：ds8q73br
+    钱航平台：MA27YQ0R44，密码：8m1a4308
+    账号：zhangruijiang，密码：0ztgbf8t

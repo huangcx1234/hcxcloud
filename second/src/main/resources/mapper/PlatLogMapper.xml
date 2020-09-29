@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiurong.hcx.second.mapper.PlatLogMapper">
+    <resultMap id="resultMap" type="com.jiurong.hcx.common.model.second.PlatLog">
+        <id property="id" column="id"/><!--id-->
+        <result property="username" column="username"/><!--用户名-->
+        <result property="module" column="module"/><!--模块名-->
+        <result property="content" column="content"/><!--内容-->
+        <result property="createTime" column="create_time"/><!--创建时间-->
+    </resultMap>
+    <sql id="columnSql">
+        `id`,
+        `username`,
+        `module`,
+        `content`,
+        `create_time`
+    </sql>
+    <sql id="propertySql">
+        #{id,jdbcType=VARCHAR},
+        #{username,jdbcType=VARCHAR},
+        #{module,jdbcType=VARCHAR},
+        #{content,jdbcType=LONGVARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}
+    </sql>
+    <sql id="columnEqProperty">
+        `id`=#{id,jdbcType=VARCHAR},
+        `username`=#{username,jdbcType=VARCHAR},
+        `module`=#{module,jdbcType=VARCHAR},
+        `content`=#{content,jdbcType=LONGVARCHAR},
+        `create_time`=#{createTime,jdbcType=TIMESTAMP},
+    </sql>
+    <sql id="columnEqPropertyIf">
+        <if test="id!=null">`id`=#{id,jdbcType=VARCHAR},</if>
+        <if test="username!=null">`username`=#{username,jdbcType=VARCHAR},</if>
+        <if test="module!=null">`module`=#{module,jdbcType=VARCHAR},</if>
+        <if test="content!=null">`content`=#{content,jdbcType=LONGVARCHAR},</if>
+        <if test="createTime!=null">`create_time`=#{createTime,jdbcType=TIMESTAMP},</if>
+    </sql>
+    <sql id="whereIdSql">
+        <where>
+            <if test="id!=null">`id` = #{id,jdbcType=VARCHAR}</if>
+            <if test="id==null">AND 1=0</if>
+        </where>
+    </sql>
+    <sql id="whereSql">
+        <where>
+            1=1
+            <if test="id!=null">AND `id`=#{id,jdbcType=VARCHAR}</if>
+            <if test="username!=null">AND `username`=#{username,jdbcType=VARCHAR}</if>
+            <if test="module!=null">AND `module`=#{module,jdbcType=VARCHAR}</if>
+            <if test="content!=null">AND `content`=#{content,jdbcType=LONGVARCHAR}</if>
+            <if test="createTime!=null">AND `create_time`=#{createTime,jdbcType=TIMESTAMP}</if>
+        </where>
+    </sql>
+    <sql id="orderSql">
+        order by
+        <choose>
+            <when test="sort=='id'">`id`</when>
+            <when test="sort=='username'">`username`</when>
+            <when test="sort=='module'">`module`</when>
+            <when test="sort=='content'">`content`</when>
+            <when test="sort=='createTime'">`create_time`</when>
+            <otherwise>`id`</otherwise>
+        </choose>
+        <choose>
+            <when test="order=='desc'">desc</when>
+            <otherwise>asc</otherwise>
+        </choose>
+    </sql>
+
+    <!--增删改查基础部分-->
+    <insert id="save" parameterType="com.jiurong.hcx.common.model.second.PlatLog">
+        INSERT INTO `plat_log`
+        (<include refid="columnSql"/>)
+        VALUES
+        (<include refid="propertySql"/>)
+    </insert>
+    <delete id="deleteById" parameterType="java.lang.String">
+        DELETE FROM `plat_log`
+        <include refid="whereIdSql"/>
+    </delete>
+    <delete id="deleteBySelective" parameterType="Map">
+        DELETE FROM `plat_log`
+        <include refid="whereSql"/>
+    </delete>
+    <update id="updateById" parameterType="com.jiurong.hcx.common.model.second.PlatLog">
+        UPDATE `plat_log`
+        <set>
+            <include refid="columnEqProperty"/>
+        </set>
+        <include refid="whereIdSql"/>
+    </update>
+    <update id="updateByIdSelective" parameterType="com.jiurong.hcx.common.model.second.PlatLog">
+        UPDATE `plat_log`
+        <set>
+            <include refid="columnEqPropertyIf"/>
+        </set>
+        <include refid="whereIdSql"/>
+    </update>
+    <select id="selectById" parameterType="java.lang.String" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `plat_log`
+        <include refid="whereIdSql"/>
+    </select>
+    <select id="selectOneBySelective" parameterType="Map" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `plat_log`
+        <include refid="whereSql"/>
+        LIMIT 0,1
+    </select>
+    <select id="selectBySelective" parameterType="Map" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"/>
+        FROM `plat_log`
+        <include refid="whereSql"/>
+        <include refid="orderSql"/>
+    </select>
+    <select id="count" parameterType="Map" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM `plat_log`
+        <include refid="whereSql"/>
+    </select>
+</mapper>

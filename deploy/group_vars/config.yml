@@ -1,0 +1,3 @@
+server_port: 8082
+module: 'config'
+module_full: 'pile-config'

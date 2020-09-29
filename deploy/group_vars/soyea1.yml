@@ -1,0 +1,3 @@
+server_port: 8085
+module: 'soyea1'
+module_full: 'pile-soyea1'

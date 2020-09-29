@@ -1,0 +1,6 @@
+---
+- name: 'compiling {{ pl }}'
+  command: mvn clean package -pl "{{pl}}" -am -Dmaven.test.skip={{skipTest | default('true') }}
+  args:
+    chdir: '{{project_dir}}'
+

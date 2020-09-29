@@ -1,0 +1,28 @@
+spring:
+    application:
+        name: hcx-first
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.9.100.137:8848
+                namespace: hcx
+            config:
+                server-addr: ${spring.cloud.nacos.discovery.server-addr}
+                file-extension: yaml
+                namespace: ${spring.cloud.nacos.discovery.namespace}
+
+dubbo:
+    scan:
+        base-packages: com.jiurong.hcx.first.dubbo
+    protocol:
+        name: dubbo
+        port: -1
+    registry:
+        address: nacos://${spring.cloud.nacos.discovery.server-addr}
+        parameters:
+            namespace: ${spring.cloud.nacos.discovery.namespace}
+    consumer:
+        check: false
+    cloud:
+        subscribed-services: hcx-second
+

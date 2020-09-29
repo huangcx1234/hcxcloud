@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  tasks:
+  - name: 'checkout project from subversion repository'
+    subversion:
+      repo: '{{project.repo}}'
+      dest: '{{project_dir}}'
+      username: '{{project.username}}'
+      password: '{{project.password}}'
+    when: not localcode
+
+- hosts: localhost
+  tasks:
+  - name: 'copy config file'
+    copy: src='{{config.src}}' dest='{{config.dest}}'
+    when: "'config' in modules_expand"
+
+- hosts: localhost
+  roles:
+  - { role: build }
+
+- hosts: registers
+  serial: 20
+  roles:
+  - role: spring-boot
+    when: "module in modules_expand"
+
+- hosts: localhost
+  tasks:
+  - name: 'sleep 60s'
+    shell: sleep 60
+    when: "'eureka' in modules_expand"
+
+- hosts: services
+  serial: 20
+  roles:
+  - role: spring-boot
+    when: "module in modules_expand"
+

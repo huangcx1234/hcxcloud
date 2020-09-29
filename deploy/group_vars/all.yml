@@ -1,0 +1,25 @@
+project:
+  # svn仓库地址
+  repo: 'svn://115.236.62.214/repos/pile'
+  # svn用户名
+  username: 'huangcx'
+  # svn密码
+  password: 'huangcx'
+  # 项目版本
+  version: '1.0.0-SNAPSHOT'
+
+config:
+  src: '/opt/pile/project/pile-config/src/main/resources/config'
+  dest: '/home/pile/service'
+
+alias:
+  eureka: 'pile-eureka'
+  config: 'pile-config'
+  gateway: 'pile-gateway'
+  center: 'pile-center'
+  soyea1: 'pile-soyea1'
+  soyea2: 'pile-soyea2'
+
+modules_expand: "{{ ( alias.keys() if modules=='all' else modules.split(',')) if modules is defined else [] }}"
+#是否使用本地源码，默认从svn更新
+localcode: false

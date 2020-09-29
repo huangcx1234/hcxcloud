@@ -1,0 +1,17 @@
+1.API文档地址
+    http://192.9.100.137:8084/swagger-ui.html
+2.API调用说明
+    实际请求地址描述：http://192.9.100.137:8083/服务名/swagger请求地址。
+    例如授权：服务名（pile-center）swagger请求地址（/api/v1/auth）
+    实际请求地址：http://192.9.100.137:8083/pile-center/api/v1/auth
+3.分页信息描述：
+    "pageNum": 当前页
+    "pageSize": 每页的数量
+    "pages": 总页数
+    "total": 总记录数
+4.接口采用RestFul风格
+    GET: 获取资源
+    POST: 添加资源
+    PUT: 更新资源
+    DELETE: 禁用/删除资源
+5.除授权接口外，所有接口调用都需要在header中添加Authorization字段，内容为授权接口返回token，有效期7天。
