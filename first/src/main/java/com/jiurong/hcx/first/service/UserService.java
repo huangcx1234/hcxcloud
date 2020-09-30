@@ -56,7 +56,7 @@ public class UserService {
     }
 
     public PageInfo<User> page(PageUser pageUser) {
-        log.info(pageSize.toString());
+        log.info("每页数量：{}",pageSize.toString());
         PageHelper.startPage(pageUser.getPageNum() == null ? 1 : pageUser.getPageNum(), pageUser.getPageSize() == null ? pageSize : pageUser.getPageSize());
         List<User> list = userMapper.selectBySelective(pageUser.toMap());
         return new PageInfo<>(list);
