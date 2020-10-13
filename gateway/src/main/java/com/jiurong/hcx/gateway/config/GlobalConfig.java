@@ -8,17 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *@ClassName GlobalFilterConfig
- *@Description TODO
- *@Author Administrator
- *@Date 2019-03-29 11:07
- *@Version 1.0
+ * @ClassName GlobalFilterConfig
+ * @Description TODO
+ * @Author Administrator
+ * @Date 2019-03-29 11:07
+ * @Version 1.0
  **/
 @Configuration
-public class GlobalFilterConfig {
+public class GlobalConfig {
 
-    @Bean
-    public AuthFilter authFilter(){
-        return new AuthFilter();
-    }
+
+//    @Bean
+//    public AuthFilter authFilter() {
+//        return new AuthFilter();
+//    }
 }

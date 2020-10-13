@@ -10,3 +10,7 @@ spring:
                 server-addr: ${spring.cloud.nacos.discovery.server-addr}
                 file-extension: yaml
                 namespace: ${spring.cloud.nacos.discovery.namespace}
+        sentinel:
+            transport:
+                port: 8720
+                dashboard: 192.9.100.137:5070
