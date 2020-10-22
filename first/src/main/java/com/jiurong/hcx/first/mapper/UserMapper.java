@@ -5,7 +5,7 @@ import com.jiurong.hcx.common.mybatis.BaseMapper;
 
 /**
  * @author soyeajr
- * @date 2020-9-18
+ * @date 2020-10-16
  * @Description 用户
  */
 public interface UserMapper extends BaseMapper<User> {

@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * @author soyeajr
- * @date 2020-9-18
+ * @date 2020-10-16
  * @Description 用户
  */
 @Data
@@ -23,11 +23,15 @@ public class SaveUser {
     @NotBlank(message = "密码不能为空")
     private String password;
 
+    @ApiModelProperty(value = "手机")
+    private String phone;
+
     @Override
     public String toString() {
         return "{"
                 + "用户名:" + username
                 + "," + "密码:" + password
+                + "," + "手机:" + phone
                 +"}";
     }
 }

@@ -5,6 +5,7 @@
         <id property="id" column="id"/><!--id-->
         <result property="username" column="username"/><!--用户名-->
         <result property="password" column="password"/><!--密码-->
+        <result property="phone" column="phone"/><!--手机-->
         <result property="createTime" column="create_time"/><!--创建时间-->
         <result property="updateTime" column="update_time"/><!--修改时间-->
     </resultMap>
@@ -12,6 +13,7 @@
         `id`,
         `username`,
         `password`,
+        `phone`,
         `create_time`,
         `update_time`
     </sql>
@@ -19,6 +21,7 @@
         #{id,jdbcType=VARCHAR},
         #{username,jdbcType=VARCHAR},
         #{password,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR},
         #{createTime,jdbcType=TIMESTAMP},
         #{updateTime,jdbcType=TIMESTAMP}
     </sql>
@@ -26,6 +29,7 @@
         `id`=#{id,jdbcType=VARCHAR},
         `username`=#{username,jdbcType=VARCHAR},
         `password`=#{password,jdbcType=VARCHAR},
+        `phone`=#{phone,jdbcType=VARCHAR},
         `create_time`=#{createTime,jdbcType=TIMESTAMP},
         `update_time`=#{updateTime,jdbcType=TIMESTAMP},
     </sql>
@@ -33,6 +37,7 @@
         <if test="id!=null">`id`=#{id,jdbcType=VARCHAR},</if>
         <if test="username!=null">`username`=#{username,jdbcType=VARCHAR},</if>
         <if test="password!=null">`password`=#{password,jdbcType=VARCHAR},</if>
+        <if test="phone!=null">`phone`=#{phone,jdbcType=VARCHAR},</if>
         <if test="createTime!=null">`create_time`=#{createTime,jdbcType=TIMESTAMP},</if>
         <if test="updateTime!=null">`update_time`=#{updateTime,jdbcType=TIMESTAMP},</if>
     </sql>
@@ -48,6 +53,7 @@
             <if test="id!=null">AND `id`=#{id,jdbcType=VARCHAR}</if>
             <if test="username!=null">AND `username`=#{username,jdbcType=VARCHAR}</if>
             <if test="password!=null">AND `password`=#{password,jdbcType=VARCHAR}</if>
+            <if test="phone!=null">AND `phone`=#{phone,jdbcType=VARCHAR}</if>
             <if test="createTime!=null">AND `create_time`=#{createTime,jdbcType=TIMESTAMP}</if>
             <if test="updateTime!=null">AND `update_time`=#{updateTime,jdbcType=TIMESTAMP}</if>
         </where>
@@ -58,6 +64,7 @@
             <when test="sort=='id'">`id`</when>
             <when test="sort=='username'">`username`</when>
             <when test="sort=='password'">`password`</when>
+            <when test="sort=='phone'">`phone`</when>
             <when test="sort=='createTime'">`create_time`</when>
             <when test="sort=='updateTime'">`update_time`</when>
             <otherwise>`id`</otherwise>

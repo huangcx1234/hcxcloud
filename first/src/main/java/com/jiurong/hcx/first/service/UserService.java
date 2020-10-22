@@ -5,10 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.jiurong.hcx.common.exception.ClientException;
 import com.jiurong.hcx.common.model.first.User;
 import com.jiurong.hcx.first.mapper.UserMapper;
-import com.jiurong.hcx.first.request.user.PageUser;
 import com.jiurong.hcx.first.request.user.SaveUser;
+import com.jiurong.hcx.first.request.user.PageUser;
 import com.jiurong.hcx.first.request.user.UpdateUser;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,11 +16,10 @@ import java.util.List;
 
 /**
  * @author soyeajr
- * @date 2020-9-18
+ * @date 2020-10-16
  * @Description 用户
  */
 @Service(value = "userService")
-@Slf4j
 public class UserService {
 
     @Value("${page.size}")
@@ -34,6 +32,7 @@ public class UserService {
         User user = new User();
         user.setUsername(saveUser.getUsername());
         user.setPassword(saveUser.getPassword());
+        user.setPhone(saveUser.getPhone());
         userMapper.save(user);
         return user;
     }
@@ -51,12 +50,12 @@ public class UserService {
         }
         user.setUsername(updateUser.getUsername());
         user.setPassword(updateUser.getPassword());
+        user.setPhone(updateUser.getPhone());
         userMapper.updateById(user);
         return user;
     }
 
     public PageInfo<User> page(PageUser pageUser) {
-        log.info("每页数量：{}",pageSize.toString());
         PageHelper.startPage(pageUser.getPageNum() == null ? 1 : pageUser.getPageNum(), pageUser.getPageSize() == null ? pageSize : pageUser.getPageSize());
         List<User> list = userMapper.selectBySelective(pageUser.toMap());
         return new PageInfo<>(list);

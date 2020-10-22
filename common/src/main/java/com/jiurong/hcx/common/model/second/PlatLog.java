@@ -1,14 +1,13 @@
 package com.jiurong.hcx.common.model.second;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jiurong.hcx.common.mybatis.annotation.CreateTime;
 import com.jiurong.hcx.common.mybatis.annotation.UUID;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jiurong.hcx.common.mybatis.annotation.CreateTime;
-import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 
 /**
  * @author soyeajr
@@ -16,7 +15,6 @@ import lombok.Data;
  * @Description 平台日志
  */
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PlatLog implements Serializable {
 
     @ApiModelProperty(value = "id")
@@ -34,6 +32,6 @@ public class PlatLog implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     @CreateTime
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 }

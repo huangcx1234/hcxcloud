@@ -1,24 +1,20 @@
 package com.jiurong.hcx.common.model.first;
 
 import com.jiurong.hcx.common.mybatis.annotation.UUID;
-
-import java.io.Serializable;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jiurong.hcx.common.mybatis.annotation.CreateTime;
 import com.jiurong.hcx.common.mybatis.annotation.UpdateTime;
 import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
  * @author soyeajr
- * @date 2020-9-18
+ * @date 2020-10-16
  * @Description 用户
  */
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class User implements Serializable {
+public class User {
 
     @ApiModelProperty(value = "id")
     @UUID
@@ -29,6 +25,9 @@ public class User implements Serializable {
 
     @ApiModelProperty(value = "密码")
     private String password;
+
+    @ApiModelProperty(value = "手机")
+    private String phone;
 
     @ApiModelProperty(value = "创建时间")
     @CreateTime

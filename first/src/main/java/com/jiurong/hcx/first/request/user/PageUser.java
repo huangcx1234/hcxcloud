@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author soyeajr
- * @date 2020-9-18
+ * @date 2020-10-16
  * @Description 用户
  */
 @Data
@@ -26,6 +26,9 @@ public class PageUser {
     @ApiModelProperty(value = "密码")
     private String password;
 
+    @ApiModelProperty(value = "手机")
+    private String phone;
+
     @ApiModelProperty(value = "第几页")
     private Integer pageNum;
 
@@ -37,6 +40,7 @@ public class PageUser {
         map.put("id", id);
         map.put("username", username);
         map.put("password", password);
+        map.put("phone", phone);
         return map;
     }
 }

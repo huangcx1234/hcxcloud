@@ -20,7 +20,6 @@ import ${basePackage}.common.mybatis.annotation.UpdateTime;
 </#if>
 </#list>
 import io.swagger.annotations.ApiModelProperty;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
@@ -29,7 +28,6 @@ import lombok.Data;
  * @Description ${tableComment}
  */
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ${className} {
 <#list table.columns as column>
 

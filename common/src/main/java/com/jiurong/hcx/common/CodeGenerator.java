@@ -43,9 +43,9 @@ public class CodeGenerator {
         //删除生成器的输出目录//
         g.deleteOutRootDir();
         //通过数据库表生成文件
-        String moduleName = "third";
-        String tableComment = "APP";
-        String tableName = "app";
+        String moduleName = "first";
+        String tableComment = "用户";
+        String tableName = "user";
         GeneratorProperties.setProperty("moduleName", moduleName);
         GeneratorProperties.setProperty("tableComment", tableComment);
         g.generateByTable(tableName);
