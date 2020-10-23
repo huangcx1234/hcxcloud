@@ -21,6 +21,7 @@ import ${basePackage}.common.mybatis.annotation.UpdateTime;
 </#list>
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import java.io.Serializable;
 
 /**
  * @author ${author}
@@ -28,7 +29,7 @@ import lombok.Data;
  * @Description ${tableComment}
  */
 @Data
-public class ${className} {
+public class ${className} implements Serializable {
 <#list table.columns as column>
 
     @ApiModelProperty(value = "${column.remarks}")

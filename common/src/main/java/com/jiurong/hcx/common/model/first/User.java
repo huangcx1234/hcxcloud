@@ -1,6 +1,8 @@
 package com.jiurong.hcx.common.model.first;
 
 import com.jiurong.hcx.common.mybatis.annotation.UUID;
+
+import java.io.Serializable;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jiurong.hcx.common.mybatis.annotation.CreateTime;
@@ -14,7 +16,7 @@ import lombok.Data;
  * @Description 用户
  */
 @Data
-public class User {
+public class User implements Serializable {
 
     @ApiModelProperty(value = "id")
     @UUID

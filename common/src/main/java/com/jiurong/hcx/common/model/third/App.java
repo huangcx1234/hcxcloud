@@ -7,6 +7,7 @@ import com.jiurong.hcx.common.mybatis.annotation.UpdateTime;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  * @Description APP
  */
 @Data
-public class App {
+public class App implements Serializable {
 
     @ApiModelProperty(value = "id")
     @UUID
